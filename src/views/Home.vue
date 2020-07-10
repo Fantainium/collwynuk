@@ -5,9 +5,9 @@
     <div class="content">
       <div class="content-container">
         <h1>Collwyn Bevan</h1>
-        <p>Web developer - IBM</p>
+        <p class="subtitle">Full stack developer</p>
       </div>
-      <div class="content-container">
+      <div class="content-container body">
         <div class="buttons">
           <div
             class="button"
@@ -73,27 +73,58 @@ export default {
   color: rgb(255, 255, 255);
   font-weight: lighter;
   overflow: auto;
+  animation-name: appear;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+  animation-duration: 3s;
+  transition-timing-function: ease-out;
+  opacity: 0;
+}
+
+.subtitle {
+  animation-name: appear;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  transition-timing-function: ease-out;
+  opacity: 0;
 }
 
 .content-container {
   margin: 32px;
-  background: rgba(0, 0, 0, 0.15);
-  height: min-content;
+  // background: rgba(0, 0, 0, 0.15);
+  // height: min-content;
   padding: 16px;
-  -webkit-box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.15);
-  border-radius: 16px;
+  // -webkit-box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.15);
+  // -moz-box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.15);
+  // box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.15);
+  // border-radius: 16px;
   text-align: center;
   max-width: 50vw;
+
   @media screen and (max-width: 768px) {
     max-width: 90vw;
   }
 }
 
 .content-container > h1 {
-  font-size: 7vw;
+  font-size: 5vw;
   margin-bottom: 8px;
+}
+
+.content-container.body {
+  animation-name: appear;
+  animation-delay: 4s;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
+  transition-timing-function: ease-out;
+  opacity: 0;
+  -webkit-box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.15);
+  height: min-content;
+  border-radius: 16px;
 }
 
 .buttons {
@@ -137,14 +168,32 @@ export default {
   position: absolute;
   top: 0;
   z-index: -10;
-  min-width: 100vw;
-  min-height: 100vh;
-  filter: blur(8px);
-  background-image: url("../assets/background.jpg");
-  background-position: center;
-  background-position: cover;
-  background-repeat: no-repeat;
-  /* background-size: 100%; */
-  transform: scale(1.1);
+  width: 100vw;
+  height: 100vh;
+  animation-name: backgroundChange;
+  animation-duration: 5s;
+  background-image: linear-gradient(black, rgb(180, 27, 129));
+  background-size: 100% 200%;
+  animation-fill-mode: forwards;
+}
+
+@keyframes backgroundChange {
+  from {
+    background-position-y: 0%;
+  }
+  to {
+    background-position-y: 100%;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    margin-top: 512px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 32px;
+  }
 }
 </style>
