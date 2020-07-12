@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <p class="description">
-      Hi, I'm a degree apprentice currently completing my 2nd year at IBM and Exeter university.
+      Hi, I'm a degree apprentice currently in my 3rd year at IBM and Exeter university.
       <br />I am currently a rapid prototyping developer, which means I mainly create full-stack web applications
       for prominent IBM clients, I also help teach people how to use IBM technologies such as IBM cloud, and Watson assistant,
       whilst also teaching them JavaScript, HTML, CSS, and nodeJS.
@@ -14,7 +14,6 @@
       <li>JavaScript</li>
       <li>NodeJS</li>
       <li>VueJS</li>
-      <li>Many APIs</li>
     </ul>
   </div>
 </template>
