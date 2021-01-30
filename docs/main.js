@@ -162,6 +162,7 @@ const canvas = document.querySelector("#board")
 const ctx = canvas.getContext("2d")
 const asteroids = []
 let gameOver = false;
+let tutorial = true;
 let mousePos = {}
 let thrust = false
 const player = new Player(100, 100)
@@ -194,6 +195,10 @@ ctx.strokeStyle = "white"
 setInterval(() => {
     ctx.fillStyle = "black"
     ctx.fillRect(0, 0, 1280, 720)
+    if (tutorial) {
+        ctx.fillStyle = "aquamarine"
+        ctx.fillText("Click to move", 400, 360)
+    }
     player.update({ target: mousePos, thrust }, ctx)
     player.draw(ctx)
     asteroids.forEach((asteroid, i) => asteroid.draw(ctx, i))
@@ -233,6 +238,7 @@ function mouseUpdate(e) {
 }
 document.addEventListener("mousedown", () => {
     thrust = true
+    tutorial = false
 })
 document.addEventListener("mouseup", () => {
     thrust = false
