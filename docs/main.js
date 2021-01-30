@@ -202,42 +202,24 @@ function mouseUpdate(e) {
 }
 document.addEventListener("mousedown", () => {
     thrust = true
-    // asteroids.push(new Asteroid(mousePos.x, mousePos.y, 0, 0))
 })
 document.addEventListener("mouseup", () => {
     thrust = false
 })
 
+document.addEventListener("touchstart", (e) => {
+    const touch = e.originalEvent.touches[0]
+    mouseUpdate({ offsetX: touch.pageX, offsetY: touch.pageY })
+    thrust = true
+})
+document.addEventListener("touchmove", (e) => {
+    const touch = e.originalEvent.changedTouches[0]
+    mouseUpdate({ offsetX: touch.pageX, offsetY: touch.pageY })
+})
+document.addEventListener("touchend", () => {
+    thrust = false
+})
 
-// ctx.beginPath()
-// snakePos.forEach(pos => {
-//     if (Math.random() > 0.5)
-//         bubbles.push({ x: pos.x, y: pos.y, size: 1 })
-// })
-// bubbles.forEach((bubble, index) => {
-//     bubble.x += (Math.random() * 50) - 25
-//     bubble.y -= Math.random() * 20
-//     bubble.size += Math.random()
-//     if (bubble.size > 10) bubbles.splice(index, 1)
-// })
-
-
-
-///TRAIL CODE
-// ctx.fillStyle = "black"
-//     ctx.fillRect(0, 0, 1920, 1080)
-//     if (snakePos.length > snakeLength) snakePos.pop()
-//     const randomColour = Math.floor(Math.random() * 16777215).toString(16);
-//     ctx.beginPath()
-//     ctx.lineWidth = "5"
-//     ctx.strokeStyle = "#" + randomColour
-//     ctx.moveTo(mousePos.x, mousePos.y)
-//     
-//     snakePos.forEach(pos => {
-//         ctx.lineTo(pos.x, pos.y)
-//         ctx.stroke()
-//     })
-//     snakePos.unshift(mousePos)
 
 function angle(cx, cy, ex, ey) {
     var dy = ey - cy;
