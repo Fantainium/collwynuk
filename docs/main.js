@@ -50,8 +50,8 @@ class Player {
     draw(ctx) {
 
         if (gameOver) {
-            ctx.fillStyle = "hotpink"
-            ctx.fillText("Game over, refresh page to try again", 100, 360)
+            ctx.fillStyle = "red"
+            ctx.fillText("Game over, refresh page to try again", 32, 360)
             return
         }
         ctx.strokeStyle = "aquamarine"
@@ -165,7 +165,7 @@ let gameOver = false;
 let mousePos = {}
 let thrust = false
 const player = new Player(100, 100)
-ctx.font = "30px Courier"
+ctx.font = "12px Courier"
 
 
 setInterval(() => {
