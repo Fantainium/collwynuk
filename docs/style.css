@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+   
+    background: black;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    user-select: none;
+-moz-user-select: none;
+}
+
+
+.header {
+    padding: 32px;
+}
+
+.title {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.tabs {
+    display: flex;
+}
+
+.tabs>div {
+    margin-right: 64px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.asteroids:hover {
+    color: aquamarine;
+}
+
+.disabled {
+    color: grey
+}
+
+.canvas-container {
+    padding: 64px;
+    display: flex;
+    justify-content: center;
+}
+
+#board {
+    /* width: 100vw; */
+    /* height: 100vh; */
+    margin: 0;
+    border: solid white 1px;
+}
+
+.about {
+    position: fixed;
+    bottom: 8px;
+    right: 8px;
+}
+
+.about-container {
+    padding: 64px;
+    width: 50%;
+    text-align: center;
+    margin:auto;
+}
