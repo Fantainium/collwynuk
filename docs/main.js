@@ -48,8 +48,13 @@ class Player {
     }
 
     draw(ctx) {
-        if (gameOver) return
-        ctx.strokeStyle = "aqua"
+
+        if (gameOver) {
+            ctx.fillStyle = "hotpink"
+            ctx.fillText("Game over, refresh page to try again", 100, 360)
+            return
+        }
+        ctx.strokeStyle = "aquamarine"
         ctx.beginPath()
         const p1 = rotate(this.x, this.y, this.x - 15, this.y - 15, this.direction)
         ctx.lineWidth = "1"
@@ -59,6 +64,7 @@ class Player {
         const p3 = rotate(this.x, this.y, this.x + 15, this.y, this.direction)
         ctx.lineTo(p3[0], p3[1])
         ctx.lineTo(p1[0], p1[1])
+        this.checkCollision(p1, p2, p3)
         // ctx.moveTo(this.x - 15, this.y)
         // ctx.lineTo(this.x + 15, this.y)
         // ctx.moveTo(this.x, this.y - 15)
@@ -71,7 +77,7 @@ class Player {
             ctx.lineTo(point.x, point.y)
         })
         ctx.stroke()
-        this.checkCollision(p1, p2, p3)
+
     }
 
     checkCollision() {
@@ -80,7 +86,7 @@ class Player {
             // if (other.checked) return false
             if ((this.x - 15 < other.x + 10 && this.x - 15 > other.x - 10) || (this.x + 15 < other.x + 10 && this.x + 15 > other.x - 10)) {
                 if ((this.y - 15 < other.y + 10 && this.y - 15 > other.y - 10) || (this.y + 15 < other.y + 10 && this.y + 15 > other.y - 10)) {
-                    alert("game over :( \n Please refresh to try again")
+                    // alert("game over :( \n Please refresh to try again")
                     gameOver = true;
                     return true
                 }
@@ -113,7 +119,7 @@ class Asteroid {
     draw(ctx, i) {
         this.x += this.hSpeed
         this.y += this.vSpeed
-        if (this.x > 1280 || this.x < 0 || this.y > 720 || this.y < 0) { removeRoid(i); }
+        if (this.x > 1280 || this.x < -1 || this.y > 720 || this.y < 0) { removeRoid(i); }
         this.positions = [
             { x: this.x + 10, y: this.y },
             { x: this.x + 10, y: this.y - 10 },
@@ -151,28 +157,31 @@ class Asteroid {
         })
     }
 }
+
 const canvas = document.querySelector("#board")
 const ctx = canvas.getContext("2d")
 const asteroids = []
 let gameOver = false;
-// const snakePos = []
-// const bubbles = []
 let mousePos = {}
 let thrust = false
-// let snakeLength = 10
-// 
 const player = new Player(100, 100)
+ctx.font = "30px Courier"
+
 
 setInterval(() => {
     const side = Math.random()
     if (side < 0.5) {
         xSpawn = Math.round(Math.random()) * 1280;
         ySpawn = Math.random() * 720;
+        hSpd = Math.sign((xSpawn - 1) * -1);
+        vSpd = Math.random() - 0.5
     } else {
         xSpawn = Math.random() * 1280;
         ySpawn = Math.round(Math.random()) * 720;
+        vSpd = Math.sign((ySpawn - 1) * -1);
+        hSpd = Math.random() - 0.5
     }
-
+    asteroids.push(new Asteroid(xSpawn, ySpawn, vSpd, hSpd))
 }, 500)
 
 setInterval(() => {
@@ -193,6 +202,28 @@ setInterval(() => {
 
 function removeRoid(id) {
     asteroids.splice(id, 1);
+
+}
+
+
+
+
+function angle(cx, cy, ex, ey) {
+    var dy = ey - cy;
+    var dx = ex - cx;
+    var theta = Math.atan2(dy, dx); // range (-PI, PI]
+    theta *= 180 / Math.PI; // rads to degs, range (-180, 180]
+    if (theta < 0) theta = 360 + theta; // range [0, 360)
+    return theta;
+}
+
+function rotate(cx, cy, x, y, angle) {
+    const radians = (Math.PI / 180) * angle,
+        cos = Math.cos(radians),
+        sin = Math.sin(radians),
+        nx = (cos * (x - cx)) + (sin * (y - cy)) + cx,
+        ny = (cos * (y - cy)) - (sin * (x - cx)) + cy;
+    return [nx, ny];
 
 }
 
@@ -219,23 +250,3 @@ document.addEventListener("touchmove", (e) => {
 document.addEventListener("touchend", () => {
     thrust = false
 })
-
-
-function angle(cx, cy, ex, ey) {
-    var dy = ey - cy;
-    var dx = ex - cx;
-    var theta = Math.atan2(dy, dx); // range (-PI, PI]
-    theta *= 180 / Math.PI; // rads to degs, range (-180, 180]
-    if (theta < 0) theta = 360 + theta; // range [0, 360)
-    return theta;
-}
-
-function rotate(cx, cy, x, y, angle) {
-    const radians = (Math.PI / 180) * angle,
-        cos = Math.cos(radians),
-        sin = Math.sin(radians),
-        nx = (cos * (x - cx)) + (sin * (y - cy)) + cx,
-        ny = (cos * (y - cy)) - (sin * (x - cx)) + cy;
-    return [nx, ny];
-
-}
