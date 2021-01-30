@@ -1,2 +1,2 @@
 # collwynuk
-[www.collwyn.uk](www.collwyn.uk)
+[http://www.collwyn.uk](http://www.collwyn.uk)
