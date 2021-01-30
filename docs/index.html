@@ -4,30 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Collwyn's lounge</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div>
-        <canvas id="board" width=1280 height=720></canvas>
+        <div class="header">
+            <div class="title">
+                Collwyn's lounge
+            </div>
+            <div class="tabs">
+                <div class="asteroids">
+                    Asteroids
+                </div>
+                <div class="missile-command disabled">
+                    Coming soon
+                </div>
+                <div class="snake disabled">
+                    Coming soon
+                </div>
+                <div class="tetrominos disabled">
+                    Coming soon
+                </div>
+            </div>
+        </div>
+        <div class="canvas-container">
+            <canvas id="board" width=1280 height=720></canvas>
+        </div>
+        <a href="about.html" class="about">About</a>
     </div>
 </body>
 <script src="main.js"></script>
-
-
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        overflow: hidden
-    }
-
-    #board {
-        /* width: 100vw; */
-        /* height: 100vh; */
-        margin: 0;
-        border: solid black 1px;
-    }
-</style>
 
 </html>
